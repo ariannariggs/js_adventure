@@ -1,0 +1,229 @@
+/*
+dark-blue: 29313A
+light-blue: B5DEF7
+orange-red: FF4916
+
+shadow-blue: 89ABCC
+*/
+
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Bai Jamjuree', sans-serif;
+    width: 100%;
+    margin: 0;
+}
+
+button {
+    color: #ffffff;
+    font-size: 1.6rem;
+    background-color: #84909B;
+    border-radius: 2px;
+    min-width: 16rem;
+}
+
+#game {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    background-color: #29313A;
+}
+
+#game-space {
+    position: relative;
+    flex: 1 1 auto;
+    margin: 1.6rem;
+    border: 3px solid #B5DEF7;
+    border-radius: 2rem;
+    background-color: #FFFFFF;
+    overflow: hidden;
+}
+
+#control-console {
+    height: 9rem;
+    padding:0 1.6rem 1.6rem 1.6rem;
+    flex: 0 0 auto;
+    background-color: #29313A;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.cc-section {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* message scroll */
+#message-scroll {
+    width: 100%;
+    height: 6rem;
+    border: 2px solid #B5DEF7;
+    background-color: #FFFFFF;
+    overflow: hidden;
+    position: relative;
+}
+
+#message {
+    color: #29313A;
+    font-size: 3.8rem;
+    line-height: 6rem;
+    text-align: center;
+    position: absolute;
+    /* scroll part */
+    -moz-transform:translateX(100%);
+    -webkit-transform:translateX(100%);
+    transform:translateX(100%);
+    /* animation */
+    -moz-animation: scroll-left 10s linear infinite;
+    -webkit-animation: scroll-left 10s linear infinite;
+    animation: scroll-left 10s linear infinite;
+}
+
+/* direction controls */
+#direction-controls {
+    display: flex;
+    align-items: flex-end;
+}
+
+.direction-key {
+    height: 3.2rem;
+    width: 3.2rem;
+    border: 2px solid #FFFFFF;
+    border-radius: 3px;
+    background-color: #84909B;
+    margin-right: 0.3rem;
+    margin-left: 0.3rem;
+    margin-top: 0.6rem;
+}
+
+.direction-key.active {
+    background-color: #FF4916;
+}
+
+#up-key {
+    margin-top: 0;
+}
+
+.up-down {
+    display: flex;
+    flex-direction: column;
+}
+
+/* spaceship */
+#spaceship {
+    width: 4rem;
+    height: 2.6rem;
+    visibility: none;
+    z-index: 100;
+
+    position: absolute;
+
+    /* perfectly centers the spaceship */
+    transform: translate(-50%, -50%);
+    top: 0;
+    right: 0;
+
+    border: 2px solid #0065E7;
+    background-image: url('./images/rocket.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+/* animations */
+@-moz-keyframes scroll-left {
+    0% { -moz-transform: translateX(100%); }
+    100% { -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes scroll-left {
+    0% { -webkit-transform: translateX(100%); }
+    100% { -webkit-transform: translateX(-100%); }
+}
+@keyframes scroll-left {
+    0% {
+        -moz-transform: translateX(100%); /* Browser bug fix */
+        -webkit-transform: translateX(100%); /* Browser bug fix */
+        transform: translateX(100%);
+    }
+    100% {
+        -moz-transform: translateX(-100%); /* Browser bug fix */
+        -webkit-transform: translateX(-100%); /* Browser bug fix */
+        transform: translateX(-100%);
+    }
+}
+
+/* planet */
+#planet-wrapper-outer {
+    width: 8rem;
+    height: 8rem;
+    position: absolute;
+    top: 2rem;
+    left: 6rem;
+    transform-origin: center center;
+    transform: translate(-50%, -50%);
+}
+
+.planet-wrapper-inner {
+    position: relative;
+    width: 8rem;
+    height: 8rem;
+}
+
+#planet {
+    width: 8rem;
+    height: 8rem;
+    background-color: #89ABCC;
+    background-image: linear-gradient(45deg, #89ABCC, pink);
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: center center;
+    z-index: 20;
+}
+
+#planet-glow {
+    border-radius: 50%;
+    background-color: #00FF00;
+    width: 8rem;
+    height: 8rem;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform-origin: center center;
+    z-index: 10;
+}
+
+#planet-glow.glowing {
+    animation: glow 4s infinite cubic-bezier(.36, .11, .89, .32);
+}
+
+@keyframes glow {
+  0% {
+    transform: scale(1, 1);
+    opacity: .5;
+  }
+
+  50% {
+    transform: scale(2, 2);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1, 1);
+    opacity: .5;
+  }
+}
